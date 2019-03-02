@@ -1,0 +1,46 @@
+{% set name = "hpfrec" %}
+{% set version = "0.2.2.13" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 11af751ef3c61cd2d282540971b8e0a339d9e567564ac4fed674cda5bcad5641
+
+build:
+  number: 0
+  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv "
+
+requirements:
+  host:
+    - cython
+    - numpy
+    - pandas >=0.21
+    - pip
+    - python
+    - scipy
+  run:
+    - cython
+    - numpy
+    - pandas >=0.21
+    - python
+    - scipy
+
+test:
+  imports:
+    - hpfrec
+
+about:
+  home: https://github.com/david-cortes/hpfrec
+  license: BSD2
+  license_family: BSD
+  license_file: 
+  summary: Hierarchical Poisson matrix factorization for recommender systems
+  doc_url: 
+  dev_url: 
+
+extra:
+  recipe-maintainers:
+    - mdekstrand
