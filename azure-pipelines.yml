@@ -1,0 +1,33 @@
+jobs:
+- job: 'Linux'
+  pool:
+    vmImage: ubuntu-16.04
+  
+  steps:
+  - bash: echo "##vso[task.prependpath]/usr/share/miniconda/bin"
+    displayName: Add conda to PATH
+
+  - script: conda build .
+    displayName: Build Conda packages
+
+- job: 'Windows'
+  pool:
+    vmImage: vs2017-win2016
+
+  steps:
+  - powershell: Write-Host "##vso[task.prependpath]$env:CONDA\Scripts"
+    displayName: Add conda to PATH
+
+  - script: conda build .
+    displayName: Build Conda packages
+
+- job: 'macOS'
+  pool:
+    vmImage: 'macOS-10.13'
+
+  steps:
+  - bash: echo "##vso[task.prependpath]$CONDA/bin"
+    displayName: Add conda to PATH
+
+  - script: conda build .
+    displayName: Build Conda packages
