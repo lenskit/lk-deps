@@ -14,6 +14,8 @@ build:
   script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv "
 
 requirements:
+  build:
+    - {{ compiler('c') }}
   host:
     - cython
     - numpy
@@ -22,7 +24,6 @@ requirements:
     - python
     - scipy
   run:
-    - cython
     - numpy
     - pandas >=0.21
     - python
