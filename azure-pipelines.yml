@@ -91,5 +91,7 @@ jobs:
 
   - script: |
       source activate build
-      anaconda --token $(Conda.ANACONDA_TOKEN) upload conda-bld/*/hpfrec*.tar.bz2
+      anaconda --token $DECODED_CONDA_TOKEN upload conda-bld/*/hpfrec*.tar.bz2
     displayName: Upload Conda packages
+    env:
+      DECODED_CONDA_TOKEN: $(ANACONDA_TOKEN)
