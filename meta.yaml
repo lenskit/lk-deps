@@ -23,13 +23,13 @@ requirements:
     - pip
     - python
     - scipy
-    - llvm-openmp [#osx]
+    - llvm-openmp #[osx]
   run:
     - numpy
     - pandas >=0.21
     - python
     - scipy
-    - llvm-openmp [#osx]
+    - llvm-openmp #[osx]
 
 test:
   imports:
