@@ -58,3 +58,34 @@ jobs:
   - task: PublishBuildArtifacts@1
     inputs:
       artifactName: 'conda'
+
+- job: 'Publish'
+  pool:
+    vmImage: ubuntu-16.04
+  condition: eq(variables['build.sourceBranch'], 'refs/heads/master')
+  dependsOn:
+  - Linux
+  - Windows
+  - macOS
+  
+  steps:
+  - bash: echo "##vso[task.prependpath]/usr/share/miniconda/bin"
+    displayName: Add conda to PATH
+
+  - script: conda create -n build -qy python=3.7 anaconda-client
+    displayName: Create Conda env
+
+  - task: DownloadBuildArtifacts@0
+    inputs:
+      buildType: current
+      artifactName: conda
+      downloadType: single
+      downloadPath: conda-bld
+  
+  - script: |
+      ls -lR conda-build
+    displayName: List build artifacts
+
+  - script: |
+      source activate build
+      anaconda --token $ANACONDA_TOKEN upload conda-build/*/hpfrec*.tar.bz2
