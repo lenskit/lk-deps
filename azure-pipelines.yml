@@ -1,3 +1,6 @@
+variables:
+  group: Conda
+
 jobs:
 - job: 'Linux'
   pool:
@@ -88,5 +91,5 @@ jobs:
 
   - script: |
       source activate build
-      anaconda --token $ANACONDA_TOKEN upload conda-bld/*/hpfrec*.tar.bz2
+      anaconda --token $(ANACONDA_TOKEN) upload conda-bld/*/hpfrec*.tar.bz2
     displayName: Upload Conda packages
