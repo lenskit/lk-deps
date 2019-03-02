@@ -83,9 +83,10 @@ jobs:
       downloadPath: conda-bld
   
   - script: |
-      ls -lR conda-build
+      find conda-bld -name '*.tar.bz2'
     displayName: List build artifacts
 
   - script: |
       source activate build
-      anaconda --token $ANACONDA_TOKEN upload conda-build/*/hpfrec*.tar.bz2
+      anaconda --token $ANACONDA_TOKEN upload conda-bld/*/hpfrec*.tar.bz2
+    displayName: Upload Conda packages
