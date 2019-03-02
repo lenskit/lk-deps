@@ -16,6 +16,8 @@ jobs:
     displayName: Build Conda packages
 
   - task: PublishBuildArtifacts@1
+    inputs:
+      artifactName: 'conda'
 
 - job: 'Windows'
   pool:
@@ -34,6 +36,8 @@ jobs:
     displayName: Build Conda packages
 
   - task: PublishBuildArtifacts@1
+    inputs:
+      artifactName: 'conda'
 
 - job: 'macOS'
   pool:
@@ -52,3 +56,5 @@ jobs:
     displayName: Build Conda packages
   
   - task: PublishBuildArtifacts@1
+    inputs:
+      artifactName: 'conda'
