@@ -7,6 +7,9 @@ jobs:
   - bash: echo "##vso[task.prependpath]/usr/share/miniconda/bin"
     displayName: Add conda to PATH
 
+  - script: conda install -qy conda-build anaconda-client
+    displayName: Install prerequisites
+
   - script: conda build .
     displayName: Build Conda packages
 
@@ -17,6 +20,9 @@ jobs:
   steps:
   - powershell: Write-Host "##vso[task.prependpath]$env:CONDA\Scripts"
     displayName: Add conda to PATH
+  
+  - script: conda install -qy conda-build anaconda-client
+    displayName: Install prerequisites
 
   - script: conda build .
     displayName: Build Conda packages
@@ -28,6 +34,9 @@ jobs:
   steps:
   - bash: echo "##vso[task.prependpath]$CONDA/bin"
     displayName: Add conda to PATH
+
+  - script: conda install -qy conda-build anaconda-client
+    displayName: Install prerequisites
 
   - script: conda build .
     displayName: Build Conda packages
