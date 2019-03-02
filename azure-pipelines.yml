@@ -12,8 +12,10 @@ jobs:
 
   - script: |
       source activate build
-      conda build .
+      conda build --output-folder $(Build.ArtifactStagingDirectory) .
     displayName: Build Conda packages
+
+  - task: PublishBuildArtifacts@1
 
 - job: 'Windows'
   pool:
@@ -28,8 +30,10 @@ jobs:
 
   - script: |
       call activate build
-      conda build .
+      conda build --output-folder $(Build.ArtifactStagingDirectory) .
     displayName: Build Conda packages
+
+  - task: PublishBuildArtifacts@1
 
 - job: 'macOS'
   pool:
@@ -44,5 +48,7 @@ jobs:
 
   - script: |
       source activate build
-      conda build .
+      conda build --output-folder $(Build.ArtifactStagingDirectory) .
     displayName: Build Conda packages
+  
+  - task: PublishBuildArtifacts@1
