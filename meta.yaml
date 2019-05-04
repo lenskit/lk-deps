@@ -14,6 +14,9 @@ build:
   script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv "
 
 requirements:
+  build:
+    - {{ compiler('c') }} #[not win]
+    - llvm-openmp #[osx]
   host:
     - cython
     - numpy
@@ -21,18 +24,13 @@ requirements:
     - pip
     - python
     - scipy
-  build:
-    - {{ compiler('c') }} # [not win]
-    - cython
-    - numpy
-    - pandas >=0.21
-    - pip
+    - llvm-openmp #[osx]
   run:
-    - cython
     - numpy
     - pandas >=0.21
     - python
     - scipy
+    - llvm-openmp #[osx]
 
 test:
   imports:
