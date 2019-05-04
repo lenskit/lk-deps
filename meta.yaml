@@ -1,5 +1,5 @@
 {% set name = "hpfrec" %}
-{% set version = "0.2.2.13" %}
+{% set version = "0.2.2.15" %}
 
 package:
   name: "{{ name|lower }}"
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 11af751ef3c61cd2d282540971b8e0a339d9e567564ac4fed674cda5bcad5641
+  sha256: 4293cb99cac067617eaa646cf8d45eaac27f495fa7c069d7a415cc21bcb834b4
 
 build:
   number: 0
@@ -21,6 +21,12 @@ requirements:
     - pip
     - python
     - scipy
+  build:
+    - {{ compiler('c') }} # [not win]
+    - cython
+    - numpy
+    - pandas >=0.21
+    - pip
   run:
     - cython
     - numpy
