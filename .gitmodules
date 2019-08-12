@@ -1,0 +1,3 @@
+[submodule "compiler-meta"]
+	path = compiler-meta
+	url = https://github.com/conda-forge/compilers-feedstock
