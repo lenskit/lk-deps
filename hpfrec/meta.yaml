@@ -1,5 +1,5 @@
 {% set name = "hpfrec" %}
-{% set version = "0.2.2.15" %}
+{% set version = "0.2.2.22" %}
 
 package:
   name: "{{ name|lower }}"
@@ -7,15 +7,16 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 4293cb99cac067617eaa646cf8d45eaac27f495fa7c069d7a415cc21bcb834b4
+  sha256: fd9fb9be11c762bc8da0a9640ae55a238c4f94e7d79f15ea3f8bad16bcee10c7
 
 build:
   number: 0
-  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv "
+  # script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv "
+  script: {{ PYTHON }} setup.py install
 
 requirements:
   build:
-    - {{ compiler('c') }} #[not win]
+    - {{ compiler('c') }}
     - llvm-openmp #[osx]
   host:
     - cython
